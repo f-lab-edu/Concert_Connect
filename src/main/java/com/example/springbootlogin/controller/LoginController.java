@@ -4,7 +4,6 @@ import com.example.springbootlogin.dao.UserDao;
 import com.example.springbootlogin.dto.UserDto;
 import com.example.springbootlogin.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,6 @@ public class LoginController {
     public LoginController(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-
     }
 
     @GetMapping("/login")
@@ -44,7 +42,6 @@ public class LoginController {
         user.setPassword(encodedPassword);
 
         userDao.addUser(user);
-
         userDao.addAuthority(user.getUsername(), "ROLE_USER");
 
         System.out.println(user.getUsername() + user.getPassword());
@@ -59,20 +56,19 @@ public class LoginController {
         User user = userDao.getUserByUsername(username);
 
         if (user == null) {
-            System.out.println("유저 몰름: " + username);
+            System.out.println("알 수 없는 사용자: " + username);
             return "redirect:/login";
         }
 
         if (passwordEncoder.matches(password, user.getPassword())) {
-            // Check if the user has the ROLE_USER authority
             if (hasUserRole(username)) {
                 return "redirect:/home";
             } else {
-                System.out.println("로그인 실패" + username);
+                System.out.println("사용자 로그인 실패: " + username);
                 return "redirect:/login";
             }
         } else {
-            System.out.println("로그인 실패" + username);
+            System.out.println("사용자 로그인 실패: " + username);
             return "redirect:/login";
         }
     }
@@ -81,8 +77,11 @@ public class LoginController {
     public String homePage() {
         return "home";
     }
-}
-/*
+
+    private boolean hasUserRole(String username) {
+        return userDao.hasUserRole(username);
+    }
+}/*
 
 /login uri로 GET 요청을 하면 loginPage 메소드가 동작됩니다. "login" 뷰페이지 반환.
 

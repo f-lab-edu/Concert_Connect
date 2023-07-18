@@ -28,7 +28,7 @@ public class UserDao {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword());
     }
-    private boolean hasUserRole(String username) {
+    public boolean hasUserRole(String username) {
         String sql = "SELECT COUNT(*) FROM authorities WHERE username = ? AND authority = 'ROLE_USER'";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, username);
         return count > 0;

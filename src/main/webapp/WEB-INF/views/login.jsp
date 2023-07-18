@@ -5,7 +5,7 @@
     <title>Login</title>
 </head>
 <body>
-<h1>Login</h1>
+<h1>로그인</h1>
 <form action="/login" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br>
@@ -14,6 +14,6 @@
     <input type="submit" value="Login">
 </form>
 
-<p>Go to Sign Up <a href="/signup">Sign Up</a></p>
+<p>회원가입 하러가기 => <a href="/signup">회원가입</a></p>
 </body>
 </html>

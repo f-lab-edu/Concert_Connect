@@ -5,7 +5,7 @@
     <title>Become a member</title>
 </head>
 <body>
-<h1>Become a member</h1>
+<h1>회원가입</h1>
 <form action="/signup" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br><br>
