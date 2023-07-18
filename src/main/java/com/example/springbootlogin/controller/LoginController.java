@@ -16,13 +16,12 @@ public class LoginController {
 
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
-    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public LoginController(UserDao userDao, PasswordEncoder passwordEncoder, JdbcTemplate jdbcTemplate) {
+    public LoginController(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        this.jdbcTemplate = jdbcTemplate;
+
     }
 
     @GetMapping("/login")
@@ -77,11 +76,7 @@ public class LoginController {
             return "redirect:/login";
         }
     }
-    private boolean hasUserRole(String username) {
-        String sql = "SELECT COUNT(*) FROM authorities WHERE username = ? AND authority = 'ROLE_USER'";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, username);
-        return count > 0;
-    }
+
     @GetMapping("/home")
     public String homePage() {
         return "home";
