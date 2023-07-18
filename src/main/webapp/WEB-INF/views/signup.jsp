@@ -2,16 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>회원가입</title>
+    <title>Become a member</title>
 </head>
 <body>
 <h1>회원가입</h1>
 <form action="/signup" method="post">
-    <label for="id">id:</label>
-    <input type="text" id="id" name="id" required><br><br>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br><br>
-    <input type="submit" value="로그인">
+    <input type="submit" value="Subscribe">
 </form>
 </body>
 </html>

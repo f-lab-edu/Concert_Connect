@@ -6,10 +6,10 @@
 <body>
 <h1>Welcome to the Home Page</h1>
 
-<h2> 로그인 성공!! </h2>
+<h2>Login successful!</h2>
 
 <form action="/logout" method="post">
-  <input type="submit" value="Logout"/>
+  <input type="submit" value="Logout">
 </form>
 </body>
 </html>
