@@ -250,6 +250,8 @@ mvnw
 .springBeans
 .sts4-cache
 .idea
+.gitignore
+.github
 
 ### NetBeans ###
 /nbproject/private/
