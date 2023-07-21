@@ -64,6 +64,7 @@ cmake-build-*/
 mvnw
 mvnw.cmd
 pom.xml
+*.md
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
@@ -132,7 +133,8 @@ fabric.properties
 # .idea/modules
 # *.iml
 # *.ipr
-
+*.yml
+*.propertise
 # CMake
 
 # Mongo Explorer plugin
