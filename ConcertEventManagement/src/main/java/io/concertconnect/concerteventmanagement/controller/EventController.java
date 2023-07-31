@@ -31,7 +31,8 @@ public class EventController {
     //이벤트 단일조회
     @GetMapping("/{id}")
     public Event retrieveEvent(@PathVariable int id) {
-        Optional<Event> event = eventRepository.findById(id);// Optional로 받는 이유 반환값으로 선언되어있어서
+        Optional<Event> event = eventRepository.findById(id);
+        // Optional로 받는 이유 반환값으로 선언되어있어서
         // Optional을 쓰는 이유 데이터가 있을 수 도 있고 없을 수 도 있기 때문에 선택적 반환을 하기위해 존재
         // Optional<Event> event = eventRepository.findById(id);
         // Optional<Event> 타입의 변수 event에 eventRepository.findById(id);(이벤트 체크) Event객체를 반환하는데
