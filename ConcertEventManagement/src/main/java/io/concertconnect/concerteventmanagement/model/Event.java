@@ -2,7 +2,11 @@ package io.concertconnect.concerteventmanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@EntityScan
 @ApiModel(description = "이벤트 정보를 위한 도메인 객체") //클래스 정보를 띄울 때
 public class Event {
     @Id

@@ -44,6 +44,7 @@ public class EventController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
     @PatchMapping("/{id}")
     public ResponseEntity<Event> partialUpdateEvent(@PathVariable int id, @RequestBody Event updatedEvent) {
         Event savedEvent = eventService.partialUpdateEvent(id, updatedEvent);
@@ -58,11 +59,12 @@ public class EventController {
 
     @PostMapping("/{id}/reserve")
     public ResponseEntity<String> reserveEvent(@PathVariable int id) {
-        String result = eventService.reserveEvent(id);
-        if ("예약이 성공적으로 완료되었습니다!".equals(result)) {
-            return ResponseEntity.ok(result);
+        EventService.UpdateResult result = eventService.reserveEvent(id);
+
+        if (result == EventService.UpdateResult.SUCCESS) {
+            return ResponseEntity.ok(result.getMessage());
         } else {
-            return ResponseEntity.badRequest().body(result);
+            return ResponseEntity.badRequest().body(result.getMessage());
         }
     }
 }
