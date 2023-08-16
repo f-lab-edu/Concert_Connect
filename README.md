@@ -1,28 +1,38 @@
 # :pushpin: Concert Connect
 
-> Concert Connect 서비스의 기능,API구현
+> 유명 뮤지션들의 내한공연, 아티스트의 공연 예매시 트래픽이 몰려 티켓을 구매 하지 못하거나<br>
+웹사이트에 접속하지 못하는 문제를 이용자로서 경험 했고 이러한 문제를 고민하여 개발하는것이<br>
+프로젝트의 목표 입니다.
   
-
 </br>
 
 ## Goals
-1. 객체 지향 설계를 적용하여 CleanCode를 목표로 유지보수가 용이한 코드 구현
+#### 1. 객체 지향 설계를 적용하여 CleanCode를 목표로 유지보수가 용이한 코드 구현
 
-중복되는 코드들, 불필요하게 수정이 일어날 코드들을 최소화해 확장이 용이하게 노력합니다.
-SOLID 원칙과 디자인패턴의 이해를 바탕을 하여 최대한 도메인 주도 설계를 하기 위해 노력합니다.
+ - 중복되는 코드, 자주 수정이 일어 날 수 있는 코드를 최소화해 확장이 용이하게 노력합니다.
+ - SOLID 원칙과 디자인패턴을 학습한 내용을 바탕으로 최대한 객체지향적인 설계를 하기 위해 노력합니다.
 
-- 최소 50.000명 이상이 접속해도 거뜬히 처리 할 수 있는 서비스 구현
-- 한줄 한줄이 의미 있는 코드 작성
+#### 2.성능 모니터링으로 서버에 일어 날 수 있는 문제를 미리 확인하고 개선   
+  - nGrinder과 Visual VM으로 부하 테스트를 진행하여 TPS, Heap Size같은 다양한 성능지수를 모니터링해 일어 날 수 있는 상황을 사전에
+    확인하고 개선합니다.
+    
+#### 3. 대용량 트래픽을 고려한 Scale Out 서버 설계
+  - 다수의 사용자가 서비스를 이용하여 TPS수치가 늘어났다고 가정하고 대용량 트래픽에서도 견딜수있는 서버 아키택처를 설계하려 합니다.
+
 </br>
 
-## 제작 기간 & 참여 인원
-- 2023년 06월 20일 ~ 
-- 개인 프로젝트
-
+## 사용 기술
+#### `Stack`
+  - Java Jdk 11
+  - Mysql
+  - Jenkins
+  - Docker
+  - Maven
+  - JPA
 </br>
 
 ## Git Branch Strategy
-개인 프로젝트 이기 때문에 GitHub Flow를 선택했다.
+개인 프로젝트 이기 때문에 조금 더 유연한 GitHub Flow를 적용했습니다.
 
 <br>
 
@@ -34,7 +44,9 @@ Main Branch 항상 최신의 상태이며, stable 상태로 Product에 배포되
 <br>
 Main Branch외에 다른 Branch는 목적과 기능에 따라 Branch를 생성해서 목적의 기능이 끝났을때 Main 브랜치로 Merge한다.<br>
 <br>
-항상 Main 브랜치에 Merge하기전 PR(Pull Request)을 통해 Approve 받고 Merge한다.<br>
+항상 Main 브랜치에 Merge하기전 코드리뷰어에게 PR(Pull Request)을 통해 Approve 받고 Merge한다.
+<br>
+
 
 </br>
 
@@ -103,29 +115,13 @@ ex) Fixes: #45 Related to: #34, #23 <br>
 </details>
 
 
-## 사용 기술
-#### `Stack`
-  - Java Jdk 11
-  - Mysql
-  - Jenkins
-  - Docker
-  - Maven
-  - JPA
 </br>
 
-## 기능
-
-전제적인 프론트앤드 UI는 프로토 타이핑으로 구현하였다 (수정예정)
-<details>
-<summary><b>기능 설명 펼치기</b></summary>
-<div markdown="1">
 
 
 
-</div>
-</details>
 
-</br>
+
 
  
 
