@@ -63,7 +63,7 @@ mvnw
 cmake-build-*/
 mvnw
 mvnw.cmd
-pom.xml
+
 *.md
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml

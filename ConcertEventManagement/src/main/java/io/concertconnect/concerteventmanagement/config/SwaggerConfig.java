@@ -23,9 +23,14 @@ public class SwaggerConfig {
 
     //API의 정보 및 라이센스
     private static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
-            "Awesome API Title", "My Event Manager REST API service", "1.0", "urn:tos",
-            DEFAULT_CONTACT, "Apache 2.0",
-            "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList<>());
+            "Awesome API Title",
+            "My Event Manager REST API service",
+            "1.0",
+            "urn:tos",
+            DEFAULT_CONTACT,
+            "Apache 2.0",
+            "http://www.apache.org/licenses/LICENSE-2.0",
+            new ArrayList<>());
 
     //API가 지원하는 타입
     private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<>(
