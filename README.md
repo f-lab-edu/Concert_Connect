@@ -24,6 +24,7 @@
 ## 사용 기술
 #### `Stack`
   - Java Jdk 11
+  - String Boot  
   - Mysql
   - Jenkins
   - Docker
