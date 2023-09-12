@@ -27,7 +27,7 @@ public class EventServiceConcurrencyTest {
 
     @Test
     public void testConcurrentReserveEvent() throws InterruptedException {
-        int eventId = 4; // 기존 이벤트 ID로 대체
+        int eventId = 4; 
 
         int totalThreads = 10; // 동시 스레드 수
         int expectedRemainingCapacity = eventRepository.findById(eventId).get().getCapacity() - totalThreads;
