@@ -6,7 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-
+.github
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+all,windows,macos,oxygenxmleditor,intellij+iml
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all,windows,macos,oxygenxmleditor,intellij+iml
 
