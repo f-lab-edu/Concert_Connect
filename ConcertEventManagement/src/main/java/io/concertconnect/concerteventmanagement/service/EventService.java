@@ -1,17 +1,16 @@
-
 package io.concertconnect.concerteventmanagement.service;
 
 import io.concertconnect.concerteventmanagement.exception.EventNotFoundException;
 import io.concertconnect.concerteventmanagement.model.Event;
 import io.concertconnect.concerteventmanagement.repository.EventRepository;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +18,8 @@ import java.util.Optional;
 public class EventService {
 
     private final EventRepository eventRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
@@ -46,6 +47,7 @@ public class EventService {
         event.setId(eventRepository.getMaxId() + 1);
         return eventRepository.save(event);
     }
+
     public Event partialUpdateEvent(int id, Event updatedEvent) {
         Optional<Event> optionalEvent = eventRepository.findById(id);
 
@@ -79,8 +81,26 @@ public class EventService {
 
         return eventRepository.save(existingEvent);
     }
+
+    @Transactional
+    public synchronized UpdateResult reserveEvent(int id) {
+        // 비관적 락
+        Event event = entityManager.find(Event.class, id, LockModeType.PESSIMISTIC_WRITE);
+
+        if (event == null) {
+            throw new EventNotFoundException("ID가 {" + id + "}인 이벤트를 찾을 수 없습니다.");
+        }
+
+        if (event.getCapacity() > 0) {
+            event.setCapacity(event.getCapacity() - 1);
+            return UpdateResult.SUCCESS;
+        } else {
+            return UpdateResult.FULLY_BOOKED;
+        }
+    }
+
     @Getter
-    public enum UpdateResult { //1번밖에 안써서 분리하기 애매함
+    public enum UpdateResult {
         SUCCESS("예약이 성공적으로 완료되었습니다!"),
         FULLY_BOOKED("이벤트가 모두 예약되었습니다!");
 
@@ -88,22 +108,6 @@ public class EventService {
 
         UpdateResult(String message) {
             this.message = message;
-        }
-    }
-    @Transactional
-    public UpdateResult reserveEvent(int id) {
-        Optional<Event> optionalEvent = eventRepository.findById(id);
-        if (!optionalEvent.isPresent()) {
-            throw new EventNotFoundException("ID가 {" + id + "}인 이벤트를 찾을 수 없습니다.");
-        }
-        Event event = optionalEvent.get();
-
-        if (event.getCapacity() > 0) {
-            event.setCapacity(event.getCapacity() - 1);
-            eventRepository.save(event);
-            return UpdateResult.SUCCESS;
-        } else {
-            return UpdateResult.FULLY_BOOKED;
         }
     }
 }
